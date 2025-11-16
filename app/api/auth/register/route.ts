@@ -4,35 +4,44 @@ import bcrypt from "bcryptjs";
 
 export async function POST(req: Request) {
   try {
-    const { email, username, password } = await req.json();
+    const { email, password } = await req.json();
 
-    if (!email || !username || !password) {
-      return NextResponse.json({ error: "Missing fields" }, { status: 400 });
-    }
-
-    const existingUser = await prisma.user.findFirst({
-      where: { OR: [{ email }, { username }] },
-    });
-
-    if (existingUser) {
+    if (!email || !password) {
       return NextResponse.json(
-        { error: "Email or username already exists" },
+        { error: "Email and password are required" },
         { status: 400 }
       );
     }
 
-    const hashed = await bcrypt.hash(password, 10);
+    const existingUser = await prisma.user.findFirst({
+      where: { email },
+    });
 
-    const user = await prisma.user.create({
+    if (existingUser) {
+      return NextResponse.json(
+        { error: "User already exists" },
+        { status: 400 }
+      );
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const newUser = await prisma.user.create({
       data: {
         email,
-        username,
-        password: hashed
+        password: hashedPassword,
       },
     });
 
-    return NextResponse.json({ message: "User created", user });
+    return NextResponse.json(
+      { message: "User created successfully", user: newUser },
+      { status: 201 }
+    );
   } catch (error) {
-    return NextResponse.json({ error: "Server error" }, { status: 500 });
+    console.error("REGISTER ERROR:", error);
+    return NextResponse.json(
+      { error: "Internal server error" },
+      { status: 500 }
+    );
   }
 }
