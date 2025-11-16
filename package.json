@@ -1,5 +1,5 @@
 {
-  "name": "everythingnow",
+  "name": "allnow",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -11,17 +11,18 @@
     "next": "14.2.5",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "framer-motion": "11.3.16",
+    "framer-motion": "^11.3.16",
     "three": "^0.164.0",
     "@react-three/fiber": "^8.15.12",
     "@react-three/drei": "^9.103.0",
-    "@prisma/client": "5.18.0",
-    "bcryptjs": "2.4.3"
+    "@prisma/client": "^5.18.0",
+    "bcryptjs": "^2.4.3",
+    "qrcode": "^1.5.3"
   },
   "devDependencies": {
-    "prisma": "5.18.0",
-    "typescript": "5.0.4",
-    "@types/react": "18.2.0",
-    "@types/node": "20.0.0"
+    "prisma": "^5.18.0",
+    "typescript": "^5.0.4",
+    "@types/react": "^18.2.0",
+    "@types/node": "^20.0.0"
   }
 }
