@@ -1,15 +1,9 @@
 "use client";
 
-import dynamic from "next/dynamic";
-
-const Scene = dynamic(() => import("@/components/Scene"), {
-  ssr: false,
-});
-
 export default function HomePage() {
   return (
-    <div className="w-full h-screen">
-      <Scene />
+    <div className="flex items-center justify-center h-screen text-3xl font-bold">
+      Home Page Loaded Successfully
     </div>
   );
 }
