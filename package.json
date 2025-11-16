@@ -1,32 +1,5 @@
-{
-  "name": "allnow",
-  "version": "1.0.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "prisma generate && next build",
-    "start": "next start"
-  },
-  "dependencies": {
-    "next": "14.2.5",
-    "react": "18.3.1",
-    "react-dom": "18.3.1",
-
-    "bcryptjs": "2.4.3",
-    "qrcode": "1.5.3",
-    "lucide-react": "0.424.0",
-
-    "@react-three/fiber": "8.15.14",
-    "@react-three/drei": "9.88.6",
-    "framer-motion": "11.2.12",
-
-    "@prisma/client": "5.22.0",
-    "prisma": "5.22.0"
-  },
-  "devDependencies": {
-    "@types/node": "20.11.30",
-    "@types/react": "18.2.46",
-    "@types/react-dom": "18.2.18",
-    "typescript": "5.4.2"
-  }
+"devDependencies": {
+  "tailwindcss": "^3.4.13",
+  "postcss": "^8.4.40",
+  "autoprefixer": "^10.4.20"
 }
