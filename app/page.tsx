@@ -1,19 +1,18 @@
-export const dynamic = "force-dynamic";
 "use client";
 
-import dynamic from "next/dynamic";
+export const dynamic = "force-dynamic";
+
+import NextDynamic from "next/dynamic";
 import { Suspense } from "react";
 
-const Scene = dynamic(() => import("@/components/Scene"), {
+const Scene = NextDynamic(() => import("@/components/Scene"), {
   ssr: false,
 });
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <main className="w-full h-screen">
-      <Suspense fallback={<div>Loading...</div>}>
-        <Scene />
-      </Suspense>
-    </main>
+    <Suspense fallback={<div>Loading 3D...</div>}>
+      <Scene />
+    </Suspense>
   );
 }
