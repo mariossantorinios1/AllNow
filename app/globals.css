@@ -1,1 +1,9 @@
-/* EMPTY SAFE FILE */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Reset basic styles */
+html, body {
+  margin: 0;
+  padding: 0;
+}
