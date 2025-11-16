@@ -5,15 +5,13 @@ import { OrbitControls } from "@react-three/drei";
 
 export default function Scene() {
   return (
-    <div className="w-full h-full">
-      <Canvas camera={{ position: [3, 3, 3] }}>
+    <div className="w-full h-[400px]">
+      <Canvas>
         <OrbitControls />
-        <ambientLight intensity={0.8} />
-        <directionalLight position={[5, 5, 5]} intensity={1} />
-
+        <ambientLight intensity={0.5} />
         <mesh>
           <boxGeometry args={[1, 1, 1]} />
-          <meshStandardMaterial color="hotpink" />
+          <meshStandardMaterial color="orange" />
         </mesh>
       </Canvas>
     </div>
