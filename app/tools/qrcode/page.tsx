@@ -1,52 +1,45 @@
 "use client";
+
 import { useState } from "react";
-import Ads from "../../components/Ads";
 import QRCode from "qrcode";
 
-export default function QRCodeGenerator() {
+export default function QRGenerator() {
   const [text, setText] = useState("");
-  const [qr, setQr] = useState("");
+  const [qrUrl, setQrUrl] = useState("");
 
-  const generateQR = async () => {
-    if (!text.trim()) return;
-    const url = await QRCode.toDataURL(text);
-    setQr(url);
-  };
+  async function generateQR() {
+    try {
+      const url = await QRCode.toDataURL(text);
+      setQrUrl(url);
+    } catch (err) {
+      console.error(err);
+    }
+  }
 
   return (
-    <main className="min-h-screen bg-black text-white p-6">
-      <Ads />
+    <div className="min-h-screen flex flex-col items-center justify-center bg-black text-white p-6">
+      <h1 className="text-4xl font-bold mb-6">QR Code Generator</h1>
 
-      <h1 className="text-3xl font-bold text-center mb-6">QR Code Generator</h1>
+      <input
+        className="w-full max-w-md p-3 rounded bg-gray-900 border border-gray-700 focus:outline-none"
+        type="text"
+        placeholder="Enter text or URL..."
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+      />
 
-      <div className="max-w-md mx-auto bg-gray-900 p-6 rounded-xl border border-gray-700">
-        <input
-          placeholder="Enter text or URL"
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-          className="w-full p-3 mb-4 text-xl bg-black text-white rounded border border-gray-600"
-        />
+      <button
+        onClick={generateQR}
+        className="mt-4 bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded text-lg"
+      >
+        Generate
+      </button>
 
-        <button
-          onClick={generateQR}
-          className="w-full p-3 mb-4 bg-blue-600 hover:bg-blue-700 rounded-lg text-xl font-semibold transition"
-        >
-          Generate QR Code
-        </button>
-
-        {qr && (
-          <div className="text-center">
-            <img src={qr} alt="QR Code" className="mx-auto mb-4" />
-            <a
-              href={qr}
-              download="qrcode.png"
-              className="underline text-blue-400"
-            >
-              Download QR Code
-            </a>
-          </div>
-        )}
-      </div>
-    </main>
+      {qrUrl && (
+        <div className="mt-6">
+          <img src={qrUrl} alt="Generated QR Code" className="rounded" />
+        </div>
+      )}
+    </div>
   );
 }
