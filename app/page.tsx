@@ -1,12 +1,11 @@
 "use client";
 
-export const dynamic = "force-dynamic";
-
-import NextDynamic from "next/dynamic";
+import dynamic from "next/dynamic";
 import { Suspense } from "react";
 
-const Scene = NextDynamic(() => import("@/components/Scene"), {
+const Scene = dynamic(() => import("@/components/Scene"), {
   ssr: false,
+  loading: () => <div>Loading 3D...</div>,
 });
 
 export default function HomePage() {
