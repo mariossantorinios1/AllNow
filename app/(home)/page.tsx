@@ -2,8 +2,8 @@
 
 export default function HomePage() {
   return (
-    <div className="flex items-center justify-center h-screen text-3xl font-bold">
-      Home Page Loaded Successfully
+    <div className="w-full h-screen flex items-center justify-center text-4xl font-bold">
+      EverythingNow — The Future Platform Starts Here
     </div>
   );
 }
